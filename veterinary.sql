@@ -37,10 +37,23 @@ CREATE TABLE doctors(
 	email VARCHAR(100) NOT NULL
 );
 
+
 CREATE TABLE invoices(
 	invoiceid INT PRIMARY KEY,
 	paymentdate TIME,
 	totalamount NUMERIC(10,2) NOT NULL,
 	appointid INT,
 	foreign key (appointid) references appointments(appointid)
+);
+
+CREATE TABLE medicalrecords(
+	recordid INT PRIMARY KEY,
+	recorddate TIMESTAMP,
+	diagnosis VARCHAR(1000) NOT NULL,
+	prescription VARCHAR(2000) NOT NULL,
+	notes VARCHAR(2000) NOT NULL,
+	animalid INT,
+	doctorid INT,
+	foreign key (animalid) references animals(animalid),
+	foreign key (doctorid) references doctors(doctorid)
 );
